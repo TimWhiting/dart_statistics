@@ -5,7 +5,7 @@ A dart library for statistics
 A simple usage example:
 
 ```dart
-import 'package:dart_stats/dart_stats.dart';
+import 'package:dart_statistics/dart_statistics.dart';
 
 
 void main() {

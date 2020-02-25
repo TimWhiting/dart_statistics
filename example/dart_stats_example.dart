@@ -1,7 +1,7 @@
 // Note this code was heavily borrowed from the javascript npm package chi-squared-test
 // All credits for algorithms / implementation go to those authors
 
-import 'package:dart_stats/dart_stats.dart';
+import 'package:dart_statistics/dart_statistics.dart';
 
 void main() {
 // We expect a fair die

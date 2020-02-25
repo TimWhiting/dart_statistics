@@ -1,6 +1,6 @@
 /// Support for doing something awesome.
 ///
 /// More dartdocs go here.
-library dart_stats;
+library dart_statistics;
 
-export 'src/stats.dart';
+export 'src/statistics.dart';

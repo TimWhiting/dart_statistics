@@ -3,7 +3,7 @@
 
 import 'dart:math';
 
-import 'package:dart_stats/dart_stats.dart';
+import 'package:dart_statistics/dart_statistics.dart';
 import 'package:test/test.dart';
 
 void main() {
