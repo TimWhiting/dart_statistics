@@ -21,25 +21,21 @@ void main() {
     });
 
     test('Chi Squared Test Disproves Hypotheses', () {
-      final reduction = 1;
       observed.addAll([6, 3, 3, 0, 0, 0]);
       expect(
           chiSquaredTest(
             observed,
             expected,
-            degreesOfFreedomReduction: reduction,
           ).probability,
           ApproxEqual(0.010362, 1e-6));
     });
 
     test('Chi Squared Test Inconclusive', () {
-      final reduction = 1;
       observed.addAll([1, 2, 4, 4, 2, 1]);
       expect(
           chiSquaredTest(
             observed,
             expected,
-            degreesOfFreedomReduction: reduction,
           ).probability,
           ApproxEqual(0.415881, 1e-6));
     });
@@ -49,27 +45,24 @@ void main() {
         [
           <double>[1, 1],
           <double>[1, 1],
-          1,
           false
         ],
         [
           <double>[6, 3, 3, 0, 0, 0],
           <double>[2, 2, 2, 2, 2, 2],
-          1,
           true
         ],
         [
           <double>[2, 2, 4, 4, 2, 2],
           <double>[2, 2, 2, 2, 2, 2],
-          1,
           false
         ]
       ];
 
       testCases.forEach((test) {
-        final result = chiSquaredTest(test[0], test[1], degreesOfFreedomReduction: test[2]);
+        final result = chiSquaredTest(test[0], test[1]);
         final p = result.probability;
-        if (test[3]) {
+        if (test[2]) {
           expect(p <= 0.05, true, reason: 'Expected $p to be significant');
         } else {
           expect(p > 0.05, true, reason: 'Expected $p to not be significant');

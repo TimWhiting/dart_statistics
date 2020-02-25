@@ -1,6 +1,6 @@
 name: dart_statistics
 description: A stats library translated from the npm javascript packages chi-squared-test, chi-squared, and gamma
-version: 0.0.1
+version: 0.0.2
 homepage: https://github.com/TimWhiting/dart_statistics.git
 
 environment:

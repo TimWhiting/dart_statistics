@@ -19,7 +19,7 @@ Result calculateChiSquaredStatistic(List<double> observations, List<double> expe
   return result;
 }
 
-Result chiSquaredTest(List<double> observations, List<double> expectations, {int degreesOfFreedomReduction = 0}) {
+Result chiSquaredTest(List<double> observations, List<double> expectations, {int degreesOfFreedomReduction = 1}) {
   final degreesOfFreedom = observations.length - degreesOfFreedomReduction;
   final result = calculateChiSquaredStatistic(observations, expectations);
   result.probability = 1 - chiCDF(result.chiSquared, degreesOfFreedom);

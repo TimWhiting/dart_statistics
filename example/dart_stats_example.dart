@@ -16,7 +16,7 @@ void main() {
   var probability = chiSquaredTest(
     observed,
     expected,
-    degreesOfFreedomReduction: reduction,
+    degreesOfFreedomReduction: reduction, // Default is actually one, so this isn't required
   ).probability;
   print(probability);
   assert(probability == 0.010362);
@@ -28,7 +28,7 @@ void main() {
   probability = chiSquaredTest(
     observed,
     expected,
-    degreesOfFreedomReduction: reduction,
+    degreesOfFreedomReduction: reduction, // Default is actually one, so this isn't required
   ).probability;
   print(probability);
   assert(probability == 0.414881);
