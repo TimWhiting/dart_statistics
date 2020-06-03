@@ -27,8 +27,8 @@ Result chiSquaredTest(List<double> observations, List<double> expectations, {int
 }
 
 class Result {
-  double chiSquared;
-  List<double> terms;
+  double/*!*/ chiSquared;
+  List<double>/*!*/ terms;
   double probability = 0;
   Result({this.chiSquared, this.terms});
 }

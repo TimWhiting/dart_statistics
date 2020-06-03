@@ -120,7 +120,7 @@ class ApproxEqual extends Matcher {
   final double epsilon;
 
   @override
-  bool matches(Object object, Map<dynamic, dynamic> matchState) {
+  bool matches(Object/*!*/ object, Map<dynamic, dynamic> matchState) {
     if (object is! double) return false;
     if (object == value) return true;
     final test = object as double;
@@ -132,7 +132,7 @@ class ApproxEqual extends Matcher {
 
   @override
   Description describeMismatch(
-      Object item, Description mismatchDescription, Map<dynamic, dynamic> matchState, bool verbose) {
+      Object/*!*/ item, Description mismatchDescription, Map<dynamic, dynamic> matchState, bool verbose) {
     return super.describeMismatch(item, mismatchDescription, matchState, verbose)
       ..add('$item is not within $value (±$epsilon).');
   }
