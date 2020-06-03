@@ -40,7 +40,8 @@ void main() {
           ApproxEqual(0.415881, 1e-6));
     });
 
-    test('A few more test cases from the javascript chi-squared-test library', () {
+    test('A few more test cases from the javascript chi-squared-test library',
+        () {
       final testCases = [
         [
           <double>[1, 1],
@@ -107,7 +108,8 @@ void main() {
         for (var x = 0.000001; x < 40; x += dx) {
           res += exp(-x) * pow(x, zs[i] - 1) * dx;
         }
-        expect((res * 10).round() / 10, (gamma(zs[i]) * 10).round() / 10, reason: 'z = ${zs[i]}');
+        expect((res * 10).round() / 10, (gamma(zs[i]) * 10).round() / 10,
+            reason: 'z = ${zs[i]}');
       }
     });
   });
@@ -120,7 +122,7 @@ class ApproxEqual extends Matcher {
   final double epsilon;
 
   @override
-  bool matches(Object/*!*/ object, Map<dynamic, dynamic> matchState) {
+  bool matches(Object /*!*/ object, Map<dynamic, dynamic> matchState) {
     if (object is! double) return false;
     if (object == value) return true;
     final test = object as double;
@@ -128,12 +130,17 @@ class ApproxEqual extends Matcher {
   }
 
   @override
-  Description describe(Description description) => description.add('$value (±$epsilon)');
+  Description describe(Description description) =>
+      description.add('$value (±$epsilon)');
 
   @override
   Description describeMismatch(
-      Object/*!*/ item, Description mismatchDescription, Map<dynamic, dynamic> matchState, bool verbose) {
-    return super.describeMismatch(item, mismatchDescription, matchState, verbose)
-      ..add('$item is not within $value (±$epsilon).');
+      Object /*!*/ item,
+      Description mismatchDescription,
+      Map<dynamic, dynamic> matchState,
+      bool verbose) {
+    return super
+        .describeMismatch(item, mismatchDescription, matchState, verbose)
+          ..add('$item is not within $value (±$epsilon).');
   }
 }
