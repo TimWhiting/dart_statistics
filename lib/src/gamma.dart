@@ -16,8 +16,8 @@ const p = [
   1.5056327351493116e-7
 ];
 
-const g_ln = 607 / 128;
-const p_ln = [
+const gLN = 607 / 128;
+const pLN = [
   0.99999999999999709182,
   57.156235665862923517,
   -59.597960355475491248,
@@ -35,30 +35,34 @@ const p_ln = [
   0.36899182659531622704e-5
 ];
 
-// Spouge approximation (suitable for large arguments)
-double lngamma(z) {
-  if (z < 0) return double.nan;
-  var x = p_ln[0];
-  for (var i = p_ln.length - 1; i > 0; --i) {
-    x += p_ln[i] / (z + i);
+/// Spouge approximation (suitable for large arguments)
+double lngamma(double z) {
+  if (z < 0) {
+    return double.nan;
   }
-  var t = z + g_ln + 0.5;
+  var x = pLN[0];
+  for (var i = pLN.length - 1; i > 0; --i) {
+    x += pLN[i] / (z + i);
+  }
+  final t = z + gLN + 0.5;
   return .5 * log(2 * pi) + (z + .5) * log(t) - t + log(x) - log(z);
 }
 
+/// Gamma function
 double gamma(double z) {
-  if (z < 0.5) {
-    return pi / (sin(pi * z) * gamma(1 - z));
-  } else if (z > 100) {
-    return exp(lngamma(z));
+  var z_ = z;
+  if (z_ < 0.5) {
+    return pi / (sin(pi * z_) * gamma(1 - z_));
+  } else if (z_ > 100) {
+    return exp(lngamma(z_));
   } else {
-    z -= 1;
+    z_ -= 1;
     var x = p[0];
     for (var i = 1; i < g + 2; i++) {
-      x += p[i] / (z + i);
+      x += p[i] / (z_ + i);
     }
-    var t = z + g + 0.5;
+    final t = z_ + g + 0.5;
 
-    return sqrt(2 * pi) * pow(t, z + 0.5) * exp(-t) * x;
+    return sqrt(2 * pi) * pow(t, z_ + 0.5) * exp(-t) * x;
   }
 }

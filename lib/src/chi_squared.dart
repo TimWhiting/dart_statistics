@@ -4,12 +4,16 @@
 import 'dart:math';
 import 'gamma.dart';
 
-double chiPDF(double x, double k_) {
-  if (x < 0) return 0;
-  var k = k_ / 2;
-  return 1 / (pow(2, k) * gamma(k)) * pow(x, k - 1) * exp(-x / 2);
+/// A chi PDF (Probability Distribution Function)
+double chiPDF(double x, double k) {
+  if (x < 0) {
+    return 0;
+  }
+  final k_ = k / 2;
+  return 1 / (pow(2, k_) * gamma(k_)) * pow(x, k_ - 1) * exp(-x / 2);
 }
 
+/// The chi GCF function
 double chiGCF(double x, double a) {
   // Good for X>A+1
   var a0 = 0.0;
@@ -30,10 +34,11 @@ double chiGCF(double x, double a) {
     a1 = a1 / b1;
     b1 = 1;
   }
-  var Prob = exp(a * log(x) - x - lngamma(a)) * a1;
-  return 1 - Prob;
+  final prob = exp(a * log(x) - x - lngamma(a)) * a1;
+  return 1 - prob;
 }
 
+/// The chi Gser function
 double chiGser(double x, double a) {
   // Good for X<A+1.
   var t9 = 1 / a;
@@ -44,10 +49,10 @@ double chiGser(double x, double a) {
     g = g + t9;
     i = i + 1;
   }
-  g = g * exp(a * log(x) - x - lngamma(a));
-  return g;
+  return g * exp(a * log(x) - x - lngamma(a));
 }
 
+/// The gamma CDF (Cumulative Distribution Function)
 double gammaCDF(double x, double a) {
   double gi;
   if (x <= 0) {
@@ -60,6 +65,7 @@ double gammaCDF(double x, double a) {
   return gi;
 }
 
+/// The chi CDF (Cumulative Distribution Function)
 double chiCDF(double z, int df) {
   if (df <= 0) {
     throw Exception('Degrees of freedom must be positive');

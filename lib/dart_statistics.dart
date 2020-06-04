@@ -1,6 +1,9 @@
-/// Support for doing something awesome.
+/// This is the `dart_statistics` library.
 ///
-/// More dartdocs go here.
+/// Currently it contains the statistics necessary for doing
+/// a chi-squared test, for comparing two distributions.
+///
+/// Other contributions are welcome
 library dart_statistics;
 
 export 'src/statistics.dart';

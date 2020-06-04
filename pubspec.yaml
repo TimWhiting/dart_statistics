@@ -5,11 +5,9 @@ homepage: https://github.com/TimWhiting/dart_statistics.git
 
 environment:
   sdk: ">=2.7.0 <3.0.0"
-
-#dependencies:
-#  path: ^1.6.0
+  meta: ^1.1.8
 
 dev_dependencies:
-  pedantic: ^1.8.0
+  abide: ^1.6.4
   test: ^1.6.0
-  nnbd_migration: any
+  nnbd_migration: ^0.1.0

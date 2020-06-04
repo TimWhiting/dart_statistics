@@ -11,12 +11,13 @@ void main() {
   final observed = <double>[6, 3, 3, 0, 0, 0];
 
 // Reduction in degrees of freedom is 1, since knowing 5 categories determines the 6th
-  final reduction = 1;
+  const reduction = 1;
 
   var probability = chiSquaredTest(
     observed,
     expected,
-    degreesOfFreedomReduction: reduction, // Default is actually one, so this isn't required
+    degreesOfFreedomReduction:
+        reduction, // Default is actually one, so this isn't required
   ).probability;
   print(probability);
   assert(probability == 0.010362);
@@ -28,7 +29,8 @@ void main() {
   probability = chiSquaredTest(
     observed,
     expected,
-    degreesOfFreedomReduction: reduction, // Default is actually one, so this isn't required
+    degreesOfFreedomReduction:
+        reduction, // Default is actually one, so this isn't required
   ).probability;
   print(probability);
   assert(probability == 0.414881);

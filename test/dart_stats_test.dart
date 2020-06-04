@@ -27,7 +27,7 @@ void main() {
             observed,
             expected,
           ).probability,
-          ApproxEqual(0.010362, 1e-6));
+          const ApproxEqual(0.010362, 1e-6));
     });
 
     test('Chi Squared Test Inconclusive', () {
@@ -37,7 +37,7 @@ void main() {
             observed,
             expected,
           ).probability,
-          ApproxEqual(0.415881, 1e-6));
+          const ApproxEqual(0.415881, 1e-6));
     });
 
     test('A few more test cases from the javascript chi-squared-test library',
@@ -60,7 +60,7 @@ void main() {
         ]
       ];
 
-      testCases.forEach((test) {
+      for (final test in testCases) {
         final result = chiSquaredTest(test[0], test[1]);
         final p = result.probability;
         if (test[2]) {
@@ -68,20 +68,20 @@ void main() {
         } else {
           expect(p > 0.05, true, reason: 'Expected $p to not be significant');
         }
-      });
+      }
     });
   });
 
   group('Chi library tests', () {
     test('chi', () {
-      expect(chiPDF(0.5, 1), ApproxEqual(0.4393912894677223, 1e-13));
-      expect(chiPDF(2.3, 1.4), ApproxEqual(0.11695769277348175, 1e-13));
+      expect(chiPDF(0.5, 1), const ApproxEqual(0.4393912894677223, 1e-13));
+      expect(chiPDF(2.3, 1.4), const ApproxEqual(0.11695769277348175, 1e-13));
     });
 
     test('chi cdf', () {
-      expect(chiCDF(2, 2), ApproxEqual(0.6321204474030797, 1e-13));
-      expect(chiCDF(1, 3), ApproxEqual(0.19874802827905516, 1e-13));
-      expect(chiCDF(200, 256), ApproxEqual(0.00399456708950239, 1e-13));
+      expect(chiCDF(2, 2), const ApproxEqual(0.6321204474030797, 1e-13));
+      expect(chiCDF(1, 3), const ApproxEqual(0.19874802827905516, 1e-13));
+      expect(chiCDF(200, 256), const ApproxEqual(0.00399456708950239, 1e-13));
     });
   });
 
@@ -99,12 +99,12 @@ void main() {
     });
 
     test('integrate', () {
-      var zs = [0.84, 1.31, 2.54, 3.01, 5.2, 6.1];
+      final zs = [0.84, 1.31, 2.54, 3.01, 5.2, 6.1];
 
       for (var i = 0; i < zs.length; i++) {
         // integration by rectangles
         var res = 0.0;
-        var dx = 0.0001;
+        const dx = 0.0001;
         for (var x = 0.000001; x < 40; x += dx) {
           res += exp(-x) * pow(x, zs[i] - 1) * dx;
         }
@@ -123,8 +123,12 @@ class ApproxEqual extends Matcher {
 
   @override
   bool matches(Object /*!*/ object, Map<dynamic, dynamic> matchState) {
-    if (object is! double) return false;
-    if (object == value) return true;
+    if (object is! double) {
+      return false;
+    }
+    if (object == value) {
+      return true;
+    }
     final test = object as double;
     return (test - value).abs() <= epsilon;
   }
@@ -135,12 +139,10 @@ class ApproxEqual extends Matcher {
 
   @override
   Description describeMismatch(
-      Object /*!*/ item,
-      Description mismatchDescription,
-      Map<dynamic, dynamic> matchState,
-      bool verbose) {
-    return super
-        .describeMismatch(item, mismatchDescription, matchState, verbose)
-          ..add('$item is not within $value (±$epsilon).');
-  }
+          Object /*!*/ item,
+          Description mismatchDescription,
+          Map<dynamic, dynamic> matchState,
+          bool verbose) =>
+      super.describeMismatch(item, mismatchDescription, matchState, verbose)
+        ..add('$item is not within $value (±$epsilon).');
 }
