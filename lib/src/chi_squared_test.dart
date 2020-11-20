@@ -2,7 +2,6 @@
 // All credits for algorithms / implementation go to those authors
 
 import 'dart:math';
-import 'package:meta/meta.dart';
 import 'chi_squared.dart';
 
 /// Calculates the difference squared divided by the expectation
