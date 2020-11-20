@@ -61,9 +61,10 @@ void main() {
       ];
 
       for (final test in testCases) {
-        final result = chiSquaredTest(test[0], test[1]);
+        final result =
+            chiSquaredTest(test[0] as List<double>, test[1] as List<double>);
         final p = result.probability;
-        if (test[2]) {
+        if (test[2] as bool) {
           expect(p <= 0.05, true, reason: 'Expected $p to be significant');
         } else {
           expect(p > 0.05, true, reason: 'Expected $p to not be significant');
@@ -122,14 +123,14 @@ class ApproxEqual extends Matcher {
   final double epsilon;
 
   @override
-  bool matches(Object /*!*/ object, Map<dynamic, dynamic> matchState) {
+  bool matches(dynamic object, Map<dynamic, dynamic> matchState) {
     if (object is! double) {
       return false;
     }
     if (object == value) {
       return true;
     }
-    final test = object as double;
+    final test = object;
     return (test - value).abs() <= epsilon;
   }
 
@@ -138,11 +139,8 @@ class ApproxEqual extends Matcher {
       description.add('$value (±$epsilon)');
 
   @override
-  Description describeMismatch(
-          Object /*!*/ item,
-          Description mismatchDescription,
-          Map<dynamic, dynamic> matchState,
-          bool verbose) =>
+  Description describeMismatch(dynamic item, Description mismatchDescription,
+          Map<dynamic, dynamic> matchState, bool verbose) =>
       super.describeMismatch(item, mismatchDescription, matchState, verbose)
         ..add('$item is not within $value (±$epsilon).');
 }

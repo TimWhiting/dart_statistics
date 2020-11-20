@@ -36,13 +36,13 @@ Result chiSquaredTest(List<double> observations, List<double> expectations,
 /// The [Result] of a chi-squared test
 class Result {
   /// The [Result] of a chi-squared test
-  Result({@required this.chiSquared, @required this.terms});
+  Result({required this.chiSquared, required this.terms});
 
   /// Chi squared result
-  double /*!*/ chiSquared;
+  double chiSquared;
 
   /// Each term of the distribution
-  List<double> /*!*/ terms;
+  List<double> terms;
 
   /// The p value of the chi-squared test
   double probability = 0;

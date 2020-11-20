@@ -62,7 +62,7 @@ linter:
     # http://dart-lang.github.io/linter/lints/avoid_annotating_with_dynamic.html
     # recommendation: optional
     # 0 issues
-    - avoid_annotating_with_dynamic
+    # - avoid_annotating_with_dynamic
 
     # Avoid using `as`.
     # http://dart-lang.github.io/linter/lints/avoid_as.html
